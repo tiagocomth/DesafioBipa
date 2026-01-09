@@ -29,6 +29,7 @@ struct InfoCardView: View {
                 .fill(Color.init(uiColor: .systemBackground))
                 
         )
+        .padding(.horizontal, 17)
     }
 }
 

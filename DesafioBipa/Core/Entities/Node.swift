@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Node: Decodable {
+struct Node: Decodable, Identifiable {
+    var id: UUID = UUID()
     var publicKey: String
     var alias: String
     var channels: Int

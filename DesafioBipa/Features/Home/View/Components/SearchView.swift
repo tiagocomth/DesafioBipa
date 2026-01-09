@@ -48,6 +48,8 @@ struct SearchView: View {
             
         }
         .padding(.trailing, 8)
+        .padding(17)
+        .padding(.bottom, 10)
     }
 }
 

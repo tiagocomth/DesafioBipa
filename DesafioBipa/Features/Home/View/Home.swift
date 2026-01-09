@@ -13,14 +13,13 @@ struct HomeView: View {
             VStack{
                 HeaderBipa()
                 SearchView()
-                    .padding(.bottom, 20)
                 InfoCardView()
                 
+                List(Node.mockList) { node in
+                    NodeCardView(node: node)
+                }
                 
-                
-                Spacer()
             }
-            .padding(20)
             .background(Color(uiColor: .secondarySystemBackground))
         }
     }
