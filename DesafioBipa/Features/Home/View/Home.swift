@@ -13,6 +13,11 @@ struct HomeView: View {
             VStack{
                 HeaderBipa()
                 SearchView()
+                    .padding(.bottom, 20)
+                InfoCardView()
+                
+                
+                
                 Spacer()
             }
             .padding(20)
