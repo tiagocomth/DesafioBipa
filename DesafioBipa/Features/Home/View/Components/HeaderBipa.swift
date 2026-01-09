@@ -23,6 +23,7 @@ struct HeaderBipa: View {
                 .clipped(antialiased: true)
                 .clipShape(Circle())
         }
+        .padding(.bottom, 20)
     }
 }
 

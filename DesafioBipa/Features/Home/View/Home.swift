@@ -12,11 +12,11 @@ struct HomeView: View {
         NavigationStack{
             VStack{
                 HeaderBipa()
-                
-                
+                SearchView()
                 Spacer()
             }
             .padding(20)
+            .background(Color(uiColor: .secondarySystemBackground))
         }
     }
 }
