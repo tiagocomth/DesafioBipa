@@ -9,7 +9,20 @@ import SwiftUI
 
 struct HeaderBipa: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing: 2){
+            Text("$Bipa")
+                .font(.system(size: 16, weight: .semibold))
+            Image(systemName: "chevron.down")
+            
+            Spacer()
+            
+            Image("bipa_logo")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 40, height: 40)
+                .clipped(antialiased: true)
+                .clipShape(Circle())
+        }
     }
 }
 
