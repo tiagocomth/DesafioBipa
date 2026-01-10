@@ -13,13 +13,13 @@ enum MempoolAPI {
 
 extension MempoolAPI: Endpoint {
     var baseURL: URL {
-        URL(string: "https://mempool.space/api/v1")!
+        URL(string: "https://mempool.space")!
     }
     
     var path: String {
         switch self {
         case .lightingNodes:
-            return "/lightning/nodes/rankings/connectivity"
+            return "api/v1/lightning/nodes/rankings/connectivity"
         }
     }
     
@@ -28,7 +28,7 @@ extension MempoolAPI: Endpoint {
     }
     
     var headers: [String : String]? {
-        nil
+        return [ "Content-Type": "application/json"]
     }
     
     var parameters: [String : Any]? {

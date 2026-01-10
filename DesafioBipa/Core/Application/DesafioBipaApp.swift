@@ -11,7 +11,10 @@ import SwiftUI
 struct DesafioBipaApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            let network = NetworkClient()
+            let service = HomeService(network: network)
+            let viewModel = HomeViewModel(service: service)
+            HomeView(viewModel: viewModel)
         }
     }
 }

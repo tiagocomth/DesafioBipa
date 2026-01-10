@@ -20,15 +20,16 @@ final class NetworkClient: NetworkClientProtocol {
         guard let request = endpoint.urlRequest else {
             throw NetworkError.invalidURL
         }
-        
-        do {
+         do {
             let (data, response) = try await session.data(for: request)
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
                 throw NetworkError.invalidResponse
             }
             
-            return try JSONDecoder().decode(T.self, from: data)
+             let decoder = JSONDecoder()
+             let decodedData = try decoder.decode(T.self, from: data)
+             return decodedData
             
         }catch {
             throw NetworkError.badRequest

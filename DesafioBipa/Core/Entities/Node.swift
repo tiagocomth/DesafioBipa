@@ -16,8 +16,8 @@ struct Node: Decodable, Identifiable {
     var firstSeen: Int
     var updatedAt: Int
     var city: LocalizedName?
-    var country: LocalizedName
-    var isoCode: String
+    var country: LocalizedName?
+    var isoCode: String?
     var subdivision: String?
     
     enum CodingKeys: String, CodingKey {

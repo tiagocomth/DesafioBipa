@@ -8,6 +8,33 @@
 import Foundation
 import Combine
 
-final class HomeViewModel: ObservableObject {
+protocol HomeViewModelProtocol {
     
+    func requestNodes() async
+    
+}
+
+final class HomeViewModel: HomeViewModelProtocol, ObservableObject{
+    
+    @Published var nodes: [Node] = []
+    @Published var isLoading: Bool = false
+    @Published var showAlert: Bool = false
+    @Published var alertMessage: String = ""
+    
+    let service: HomeServiceProtocol
+    
+    init(service: HomeServiceProtocol) {
+        self.service = service
+    }
+    
+    func requestNodes() async {
+        
+        do {
+            nodes = try await service.fetchNodes()
+
+        } catch(let error) {
+            showAlert = true
+            alertMessage = error.localizedDescription
+        }
+    }
 }

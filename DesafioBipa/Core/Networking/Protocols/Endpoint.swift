@@ -18,15 +18,16 @@ protocol Endpoint {
 
 extension Endpoint {
     var urlRequest: URLRequest? {
-        guard var urlComponents = URLComponents(url: baseURL.appending(component: path, directoryHint: .notDirectory), resolvingAgainstBaseURL: false) else {
+        guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false) else {
             return nil
         }
+        components.path = "/" + path
         
         if method == .get, let parameters = parameters as? [String: String] {
-            urlComponents.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+            components.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
         }
         
-        guard let url = urlComponents.url else {
+        guard let url = components.url else {
             return nil
         }
         
@@ -47,7 +48,6 @@ extension Endpoint {
             urlRequest.httpBody = jsonData
         }
 
-        
         return urlRequest
     }
 }

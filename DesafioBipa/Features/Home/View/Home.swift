@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @StateObject var viewModel: HomeViewModel
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -15,16 +18,21 @@ struct HomeView: View {
                 SearchView()
                 InfoCardView()
                 
-                List(Node.mockList) { node in
+                List(viewModel.nodes) { node in
                     NodeCardView(node: node)
                 }
-                
             }
             .background(Color(uiColor: .secondarySystemBackground))
+        }
+        .task {
+            await viewModel.requestNodes()
+        }
+        .alert(viewModel.alertMessage, isPresented: $viewModel.showAlert) {
+            Button("Ok") { }
         }
     }
 }
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView(viewModel: <#HomeViewModel#>)
+//}
