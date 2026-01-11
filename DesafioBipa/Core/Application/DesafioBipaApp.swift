@@ -9,12 +9,21 @@ import SwiftUI
 
 @main
 struct DesafioBipaApp: App {
+    
+    private let network = NetworkClient()
+    private let service: HomeService
+    private let viewModel: HomeViewModel
+    
+    init() {
+        self.service = HomeService(network: network)
+        self.viewModel = HomeViewModel(service: service)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            let network = NetworkClient()
-            let service = HomeService(network: network)
-            let viewModel = HomeViewModel(service: service)
-            HomeView(viewModel: viewModel)
+            NavigationStack{
+                HomeView(viewModel: viewModel)
+            }
         }
     }
 }

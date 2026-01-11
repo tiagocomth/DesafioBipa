@@ -20,6 +20,7 @@ struct NodeCardView: View {
                 .padding(.trailing, 10)
             VStack(alignment: .leading, spacing: 10){
                 Text(node.alias)
+                    .foregroundStyle(.primary)
                     .font(.system(size: 14))
                 HStack{
                     Text("\(node.capacity)")

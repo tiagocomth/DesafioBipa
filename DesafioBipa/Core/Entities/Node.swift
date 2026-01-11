@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Node: Decodable, Identifiable {
+struct Node: Decodable, Identifiable, Hashable {
     var id: UUID = UUID()
     var publicKey: String
     var alias: String
@@ -121,7 +121,7 @@ extension Node {
     ]
 }
 
-struct LocalizedName: Codable {
+struct LocalizedName: Codable, Hashable {
     let de: String?
     let en: String?
     let es: String?

@@ -19,7 +19,9 @@ final class HomeViewModel: HomeViewModelProtocol, ObservableObject{
     @Published var nodes: [Node] = []
     @Published var isLoading: Bool = false
     @Published var showAlert: Bool = false
+    @Published var showDetail: Bool = false
     @Published var alertMessage: String = ""
+    @Published var selectedNode: Node?
     
     let service: HomeServiceProtocol
     

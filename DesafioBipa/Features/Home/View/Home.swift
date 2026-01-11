@@ -12,18 +12,22 @@ struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
     
     var body: some View {
-        NavigationStack{
-            VStack{
+        VStack{
+            ScrollView{
                 HeaderBipa()
                 SearchView()
                 InfoCardView()
-                
-                List(viewModel.nodes) { node in
-                    NodeCardView(node: node)
+                ListNodeView(nodes: $viewModel.nodes) { node in
+                    viewModel.selectedNode = node
                 }
             }
+            .scrollIndicators(.hidden)
             .background(Color(uiColor: .secondarySystemBackground))
+
         }
+        .navigationDestination(item: $viewModel.selectedNode, destination: { node in
+            NodeDetailView(node: node)
+        })
         .task {
             await viewModel.requestNodes()
         }
@@ -34,5 +38,5 @@ struct HomeView: View {
 }
 
 //#Preview {
-//    HomeView(viewModel: <#HomeViewModel#>)
+//    HomeView(viewModel: HomeViewModel)
 //}
