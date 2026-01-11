@@ -15,29 +15,38 @@ struct HomeView: View {
         VStack{
             ScrollView{
                 HeaderBipa()
-                SearchView()
+                SearchView(searchText: $viewModel.searchText)
                 InfoCardView()
-                ListNodeView(nodes: $viewModel.nodes) { node in
+
+                ListNodeView(nodes: viewModel.filteredNodes) { node in
                     viewModel.selectedNode = node
                 }
             }
+            .overlay {
+                if viewModel.isLoading {
+                    ZStack {
+                        Color.black.opacity(0.5)
+                            .ignoresSafeArea()
+                        
+                        ProgressView()
+                            .tint(Color.white)
+                    }
+                }
+            }
             .refreshable {
-                //TODO: add loading
                 await viewModel.requestNodes()
             }
             .scrollIndicators(.hidden)
             .background(Color(uiColor: .secondarySystemBackground))
-
-        }
-        .sheet(item: $viewModel.selectedNode){ node in
-            NodeDetailView(node: node)
-        }
-        .task {
-            //TODO: add loading
-            await viewModel.requestNodes()
-        }
-        .alert(viewModel.alertMessage, isPresented: $viewModel.showAlert) {
-            Button("Ok") { }
+            .sheet(item: $viewModel.selectedNode){ node in
+                NodeDetailView(node: node)
+            }
+            .task {
+                await viewModel.requestNodes()
+            }
+            .alert(viewModel.alertMessage, isPresented: $viewModel.showAlert) {
+                Button("Ok") { }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListNodeView: View {
     
-    @Binding var nodes: [Node]
+    var nodes: [Node]
     let onNodeSelection: (Node) -> Void
     
     var body: some View {
@@ -22,7 +22,7 @@ struct ListNodeView: View {
             }
         }
         .scrollDisabled(true)
-        .frame(height: CGFloat((nodes.count * LayoutConstants.NodeList.rowHeight)), alignment: .top)
+        .frame(height: CGFloat((nodes.count * LayoutConstants.NodeList.rowHeight) + 200), alignment: .top)
     .background(Color(uiColor: .secondarySystemBackground))
     }
 }

@@ -28,10 +28,14 @@ final class NetworkClient: NetworkClientProtocol {
             }
             
              let decoder = JSONDecoder()
-             let decodedData = try decoder.decode(T.self, from: data)
-             return decodedData
-            
+             do {
+                 let decodedData = try decoder.decode(T.self, from: data)
+                 return decodedData
+             }catch {
+                 throw NetworkError.badRequest
+             }
         }catch {
+            print(request.url?.absoluteString ?? "")
             throw NetworkError.badRequest
         }
         

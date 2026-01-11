@@ -13,13 +13,23 @@ protocol HomeViewModelProtocol {
     func requestNodes() async
     
 }
-
+@MainActor
 final class HomeViewModel: HomeViewModelProtocol, ObservableObject{
     
     @Published var nodes: [Node] = []
+    var filteredNodes: [Node] {
+        if searchText.isEmpty {
+            return nodes
+        } else {
+            return nodes.filter {
+                $0.alias.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
     @Published var isLoading: Bool = false
     @Published var showAlert: Bool = false
     @Published var showDetail: Bool = false
+    @Published var searchText: String = ""
     @Published var alertMessage: String = ""
     @Published var selectedNode: Node?
     
@@ -30,7 +40,7 @@ final class HomeViewModel: HomeViewModelProtocol, ObservableObject{
     }
     
     func requestNodes() async {
-        
+        isLoading = true
         do {
             nodes = try await service.fetchNodes()
 
@@ -38,5 +48,7 @@ final class HomeViewModel: HomeViewModelProtocol, ObservableObject{
             showAlert = true
             alertMessage = error.localizedDescription
         }
+        isLoading = false
+
     }
 }
