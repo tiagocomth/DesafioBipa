@@ -12,7 +12,32 @@ struct NodeDetailView: View {
     let node: Node
     
     var body: some View {
-        Text(node.alias)
+        ZStack{
+            
+            Color(uiColor: .secondarySystemBackground)
+                .ignoresSafeArea()
+            
+            VStack{
+                Image("coloredCube")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 130, height: 130)
+                    .padding()
+                
+                PrimaryInfoCardView(node: node)
+                
+                SecondInfoCardView(node: node)
+                    
+                .background(
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color.init(uiColor: .systemBackground))
+                )
+                .padding()
+    
+            }
+        }
+        .presentationDragIndicator(.visible)
+
     }
 }
 

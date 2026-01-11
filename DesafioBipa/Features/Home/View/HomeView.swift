@@ -21,14 +21,19 @@ struct HomeView: View {
                     viewModel.selectedNode = node
                 }
             }
+            .refreshable {
+                //TODO: add loading
+                await viewModel.requestNodes()
+            }
             .scrollIndicators(.hidden)
             .background(Color(uiColor: .secondarySystemBackground))
 
         }
-        .navigationDestination(item: $viewModel.selectedNode, destination: { node in
+        .sheet(item: $viewModel.selectedNode){ node in
             NodeDetailView(node: node)
-        })
+        }
         .task {
+            //TODO: add loading
             await viewModel.requestNodes()
         }
         .alert(viewModel.alertMessage, isPresented: $viewModel.showAlert) {

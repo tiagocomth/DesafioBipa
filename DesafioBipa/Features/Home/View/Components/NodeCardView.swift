@@ -20,24 +20,25 @@ struct NodeCardView: View {
                 .padding(.trailing, 10)
             VStack(alignment: .leading, spacing: 10){
                 Text(node.alias)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(.black)
                     .font(.system(size: 14))
                 HStack{
                     Text("\(node.capacity)")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.black.secondary)
                     Text("Channel Count: \(node.channels)")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.black.secondary)
 
                 }
                 Text(node.publicKey)
                     .font(.caption)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(.pinkBipa)
                     .lineLimit(0)
             }
             Spacer()
             Image(systemName: "chevron.right")
+                .foregroundStyle(Color.black)
         }
 
     }
