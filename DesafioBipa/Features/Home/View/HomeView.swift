@@ -15,8 +15,8 @@ struct HomeView: View {
         VStack{
             ScrollView{
                 HeaderBipa()
-                SearchView(searchText: $viewModel.searchText)
-                InfoCardView()
+                SearchView(searchText: $viewModel.searchText, sortOption: $viewModel.sortOption)
+                InfoCardView(listTitle: viewModel.listTitle)
 
                 ListNodeView(nodes: viewModel.filteredNodes) { node in
                     viewModel.selectedNode = node

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @Binding var searchText: String
+    @Binding var sortOption: SortOption
     var body: some View {
         HStack{
             HStack(spacing: 0){
@@ -34,8 +35,9 @@ struct SearchView: View {
                     
             )
             Menu {
-                Button("Top Capacity Nodes") {}
-                Button("New Nodes") {}
+                Button("by Liquidity") { sortOption = .liquidity }
+                Button("by Connectivity") { sortOption = .connectivity }
+                Button("Oldest Nodes") { sortOption = .age }
 
             } label: {
                 Image(systemName: "line.3.horizontal.decrease")
@@ -53,10 +55,10 @@ struct SearchView: View {
     }
 }
 
-#Preview {
-    @Previewable @State var textP: String = ""
-    SearchView(searchText: $textP)
-}
+//#Preview {
+//    @Previewable @State@Previewable @State var textP: String = ""
+//    SearchView(searchText: $textP)
+//}
 
 
 

@@ -9,7 +9,7 @@ import Foundation
 
 protocol HomeServiceProtocol {
     
-    func fetchNodes() async throws -> [Node]
+    func fetchNodes(_ sortOption: SortOption) async throws -> [Node]
     
 }
 
@@ -22,8 +22,10 @@ final class HomeService: HomeServiceProtocol {
         self.network = network
     }
     
-    func fetchNodes() async throws -> [Node] {
-        let endpoint = MempoolAPI.lightingNodes
+    func fetchNodes(_ sortOption: SortOption) async throws -> [Node] {
+        
+        let endpoint = MempoolAPI.sortEndpoint(sortOption)
+        
         let nodes: [Node] = try await network.request(endpoint)
         return nodes
     }

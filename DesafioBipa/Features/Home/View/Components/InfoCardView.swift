@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct InfoCardView: View {
+    
+    var listTitle: String
+    
     var body: some View {
         HStack(){
             Image("bitcoin")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
-            VStack{
+            VStack(alignment: .leading){
                 Text("Lighting Node")
                     .font(.system(size: 24, weight: .bold, design: .default))
-                Text("Welcome to iOS Challenge!")
-                    .font(.system(size: 12, weight: .light, design: .default))
+                    .padding(.bottom, 1)
+                Text("Filtered by \(listTitle)")
+                    .font(.system(size: 14, weight: .light, design: .default))
             }
             Spacer()
         }
@@ -33,6 +37,6 @@ struct InfoCardView: View {
     }
 }
 
-#Preview {
-    InfoCardView()
-}
+//#Preview {
+//    InfoCardView()
+//}

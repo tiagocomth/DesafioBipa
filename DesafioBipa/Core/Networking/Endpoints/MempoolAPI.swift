@@ -8,7 +8,9 @@
 import Foundation
 
 enum MempoolAPI {
-    case lightingNodes
+    case lightningNodesByConnectivity
+    case lightningNodesByLiquidity
+    case lightningNodesByAge
 }
 
 extension MempoolAPI: Endpoint {
@@ -18,8 +20,12 @@ extension MempoolAPI: Endpoint {
     
     var path: String {
         switch self {
-        case .lightingNodes:
+        case .lightningNodesByConnectivity:
             return "api/v1/lightning/nodes/rankings/connectivity"
+        case .lightningNodesByLiquidity:
+            return "api/v1/lightning/nodes/rankings/liquidity"
+        case .lightningNodesByAge:
+            return "api/v1/lightning/nodes/rankings/age"
         }
     }
     
@@ -34,6 +40,17 @@ extension MempoolAPI: Endpoint {
     var parameters: [String : Any]? {
         nil
     }
-    
-    
+}
+
+extension MempoolAPI {
+    static func sortEndpoint(_ sort: SortOption) -> MempoolAPI {
+        switch sort {
+        case .connectivity:
+            return .lightningNodesByConnectivity
+        case .liquidity:
+            return .lightningNodesByLiquidity
+        case .age:
+            return .lightningNodesByAge
+        }
+    }
 }

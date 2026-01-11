@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HeaderBipa: View {
+    
     var body: some View {
         HStack(spacing: 2){
             Text("$Bipa")
