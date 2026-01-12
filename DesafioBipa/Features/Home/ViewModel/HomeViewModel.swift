@@ -33,7 +33,7 @@ final class HomeViewModel: HomeViewModelProtocol, ObservableObject{
     @Published var searchText: String = ""
     @Published var alertMessage: String = ""
     @Published var selectedNode: Node?
-    @Published var sortOption: SortOption = .connectivity {
+    @Published var sortOption: SortOption = .connectivity {//teste para validar quando essa sorOption Muda ele chama a requisicao
         didSet {
             Task {
                 await self.requestNodes()
@@ -58,7 +58,7 @@ final class HomeViewModel: HomeViewModelProtocol, ObservableObject{
             showAlert = true
             alertMessage = error.localizedDescription
         }
-        isLoading = false
+        isLoading = false//teste para validar se o loading foi desativado
 
     }
 }
