@@ -1,4 +1,4 @@
-# Project README
+# Bipa iOS Technical Challenge
 
 ## Build tools & versions used
 
