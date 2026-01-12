@@ -23,10 +23,10 @@ struct NodeCardView: View {
                     .foregroundStyle(.black)
                     .font(.system(size: 14))
                 HStack{
-                    Text("\(node.capacity)")
+                    Text("btc: \(Int.satsToBitcoin(number: node.capacity))")
                         .font(.caption)
                         .foregroundStyle(.black.secondary)
-                    Text("Channel Count: \(node.channels)")
+                    Text("channel: \(node.channels)")
                         .font(.caption)
                         .foregroundStyle(.black.secondary)
 

@@ -18,18 +18,18 @@ struct SecondInfoCardView: View {
 
                 HStack{
                     VStack(alignment: .leading){
-                        Text("channels")
+                        Text("firstSeen")
                             .padding(.bottom, 2)
 
-                        Text("\(node.channels)")
+                        Text("\(Int.unixToDateTime(unix: node.firstSeen))")
                             .foregroundStyle(.secondary)
                             .font(.system(size: 12))
                     }
                     .padding(.trailing, 90)
                     VStack(alignment: .leading){
-                        Text("sats")
+                        Text("updatedAt ")
                             .padding(.bottom, 2)
-                        Text("\(node.capacity)")
+                        Text("\(Int.unixToDateTime(unix: node.updatedAt))")
                             .foregroundStyle(.secondary)
                             .font(.system(size: 12))
                     }

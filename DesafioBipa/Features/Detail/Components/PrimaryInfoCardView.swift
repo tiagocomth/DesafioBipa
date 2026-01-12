@@ -41,9 +41,9 @@ struct PrimaryInfoCardView: View {
                     }
                     .padding(.trailing, 90)
                     VStack(alignment: .leading){
-                        Text("sats")
+                        Text("sats (btc)")
                             .padding(.bottom, 2)
-                        Text("\(node.capacity)")
+                        Text("btc: \(Int.satsToBitcoin(number: node.capacity))")
                             .foregroundStyle(.secondary)
                             .font(.system(size: 12))
                     }
