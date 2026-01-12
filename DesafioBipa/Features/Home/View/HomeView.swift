@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Root view for the Home screen. Displays header, search/sort controls,
+/// a summary card, and a node list with filtering and detail presentation.
 struct HomeView: View {
     
     @StateObject var viewModel: HomeViewModel
@@ -18,10 +20,12 @@ struct HomeView: View {
                 SearchView(searchText: $viewModel.searchText, sortOption: $viewModel.sortOption)
                 InfoCardView(listTitle: viewModel.listTitle)
 
+                // List of nodes filtered by search text. Selecting a node presents details.
                 ListNodeView(nodes: viewModel.filteredNodes) { node in
                     viewModel.selectedNode = node
                 }
             }
+            // Semi-transparent overlay shown while data is loading.
             .overlay {
                 if viewModel.isLoading {
                     ZStack {

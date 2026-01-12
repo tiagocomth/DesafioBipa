@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Compact header showing a selectable account/context label and the app logo.
 struct HeaderBipa: View {
     
     var body: some View {

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// A compact row that displays a node’s alias, capacity (BTC), channel count, and public key.
+/// Intended for use inside ListNodeView.
 struct NodeCardView: View {
     
     var node: Node
@@ -18,10 +20,12 @@ struct NodeCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40)
                 .padding(.trailing, 10)
+            
             VStack(alignment: .leading, spacing: 10){
                 Text(node.alias)
                     .foregroundStyle(.black)
                     .font(.system(size: 14))
+                
                 HStack{
                     Text("btc: \(Int.satsToBitcoin(number: node.capacity))")
                         .font(.caption)
@@ -29,18 +33,18 @@ struct NodeCardView: View {
                     Text("channel: \(node.channels)")
                         .font(.caption)
                         .foregroundStyle(.black.secondary)
-
                 }
+                
                 Text(node.publicKey)
                     .font(.caption)
                     .foregroundColor(.pinkBipa)
                     .lineLimit(0)
             }
             Spacer()
+            
             Image(systemName: "chevron.right")
                 .foregroundStyle(Color.black)
         }
-
     }
 }
 

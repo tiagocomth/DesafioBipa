@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Summary card that describes the current list context and active filter.
 struct InfoCardView: View {
     
     var listTitle: String
@@ -17,10 +18,12 @@ struct InfoCardView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
+            
             VStack(alignment: .leading){
                 Text("Lighting Node")
                     .font(.system(size: 24, weight: .bold, design: .default))
                     .padding(.bottom, 1)
+                
                 Text("Filtered by \(listTitle)")
                     .font(.system(size: 14, weight: .light, design: .default))
             }
@@ -31,7 +34,6 @@ struct InfoCardView: View {
         .background(
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color.init(uiColor: .systemBackground))
-                
         )
         .padding(.horizontal, 17)
     }
