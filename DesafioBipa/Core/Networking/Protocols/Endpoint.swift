@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Describes a network endpoint capable of producing a URLRequest.
+/// Conforming types specify base URL, path, HTTP method, headers, and parameters.
 protocol Endpoint {
     var baseURL: URL { get }
     var path: String { get }
@@ -17,6 +19,10 @@ protocol Endpoint {
 }
 
 extension Endpoint {
+    /// Builds a URLRequest from the endpoint configuration.
+    /// - Encodes GET parameters as URL query items when provided as [String: String].
+    /// - Encodes POST parameters as a JSON body.
+    /// - Applies headers and HTTP method to the request.
     var urlRequest: URLRequest? {
         guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false) else {
             return nil

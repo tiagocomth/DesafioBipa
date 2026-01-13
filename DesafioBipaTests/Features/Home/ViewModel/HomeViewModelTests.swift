@@ -9,22 +9,32 @@ import XCTest
 import Combine
 @testable import DesafioBipa
 
-
+/// Unit tests for `HomeViewModel`.
+///
+/// Scope:
+/// - Verify that changing `sortOption` triggers a new nodes request by observing `isLoading`.
+/// - Verify that `isLoading` returns to `false` after `requestNodes()` completes.
+///
+/// Implementation details:
+/// - Uses a `MockHomeService` to isolate the view model from real networking and to control timing.
+/// - Observes the `@Published` property `isLoading` via Combine to detect request start/finish.
+/// - Annotated with `@MainActor` to match UI-bound behavior and avoid actor-related issues in tests.
 @MainActor
 final class HomeViewModelTests: XCTestCase {
     
     var homeViewModel: HomeViewModel!
 
-    override func setUpWithError() throws {
+    override func setUp()  {
+        homeViewModel = HomeViewModel(service: MockHomeService())
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown()  {
+        homeViewModel = nil
     }
 
     func test_whenSortOptionChanges_shouldRequestNodes() async {
         /// Creates an expectation to wait for an async event.
         let expectation = XCTestExpectation(description: "Request should be called")
-        homeViewModel = HomeViewModel(service: MockHomeService())
         
         XCTAssertFalse(homeViewModel.isLoading)
                 
@@ -51,7 +61,6 @@ final class HomeViewModelTests: XCTestCase {
         //Given
         // Creates an expectation to wait for an async event.
         let expectation = XCTestExpectation(description: "Request should be called")
-        homeViewModel = HomeViewModel(service: MockHomeService())
         
         XCTAssertFalse(homeViewModel.isLoading)
         
